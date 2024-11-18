@@ -1,18 +1,22 @@
 import { Injectable } from '@nestjs/common';
-import { subDays } from 'date-fns';
+import { BinanceApiRoutes } from '../../common/routes/routes.enum';
+import { HistoricalMarketDataParameters } from './types/binance.types';
+import { getHistoricalDataParameters } from './utils/binance.utils';
 
 @Injectable()
 export class BinanceService {
   public async getHistoricalMarketData(
-    underlying: string = 'BTCUSDT',
-    startTime: number = subDays(new Date(), 1).getTime(),
-    endTime: number = new Date().getTime(),
+    parameters?: HistoricalMarketDataParameters,
   ): Promise<void> {
-    const res = await fetch(
-      `https://eapi.binance.com/eapi/v1/exerciseHistory?underlying=${underlying}&startTime=${startTime}&endTime=${endTime}`,
-    );
-    const data = await res.json();
+    const { underlying, startTime, endTime } =
+      getHistoricalDataParameters(parameters);
 
-    console.log(data);
+    const res = await fetch(
+      `${BinanceApiRoutes.ExerciseHistory}?underlying=${underlying}&startTime=${startTime}&endTime=${endTime}`,
+    );
+
+    const historicalMarketData = await res.json();
+
+    console.log(historicalMarketData);
   }
 }
