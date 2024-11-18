@@ -30,6 +30,7 @@ historical market data and display it in the chart
 
 - **Node.js** (LTS version) - [Download here](https://nodejs.org/)
 - **NestJS CLI** (optional but recommended) - [Install NestJS CLI](https://docs.nestjs.com/)
+- **Live Preview** (optional but recommended) - [Install NestJS CLI](https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server)
 
 ## Configuration
 
@@ -70,6 +71,15 @@ After setting up your environment, you can start the application. Run the follow
 ```bash
 npm run start
 ```
+
+### 5. Run the HTML page with generated chart
+
+To run the HTML file successfully, you need to install external plugin mentioned in [Installation](#installation)
+prerequisites (if using VS Code) or 
+just run 
+it by 
+built-in 
+tool provided by Webstorm. 
 
 This will launch the application on the specified port (by default, it will be port 3000 unless specified otherwise in the .env file).
 
