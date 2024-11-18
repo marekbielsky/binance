@@ -72,6 +72,11 @@ After setting up your environment, you can start the application. Run the follow
 npm run start
 ```
 
+Alternatively, you can run the dev environment as well (strongly recommended). Run the following command:
+```bash
+npm run start:dev
+```
+
 ### 5. Run the HTML page with generated chart
 
 To run the HTML file successfully, you need to install external plugin mentioned in [Installation](#installation)
@@ -98,6 +103,13 @@ This project is structured to have different types of tests for various parts of
 
 1. **Unit Tests**:
    Unit tests verify the behavior of individual components or services in isolation. These tests ensure that each part of the application works correctly and independently.
+
+### Run test
+
+To run the tests, you need to execute the following command:
+```bash
+npm run test
+```
 
 ## Contributing
 
