@@ -62,6 +62,7 @@ Add the necessary values for your environment variables.
 Here’s a sample .env file to help you get started:
 
 ```
+BINANCE_API="https://eapi.binance.com/eapi/v1"
 API_PORT=3000
 ```
 
