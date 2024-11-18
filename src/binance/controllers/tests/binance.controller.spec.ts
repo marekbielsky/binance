@@ -1,5 +1,4 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ConfigModule } from '@nestjs/config';
 import { BinanceController } from '../binance.controller';
 import { BinanceService } from '../../services/binance.service';
 import { HistoricalMarketDataDTO } from '../../dtos/binance.dto';
@@ -41,8 +40,9 @@ describe('BinanceController', () => {
         .fn()
         .mockResolvedValueOnce(mockHistoricalMarketDataRes);
 
-      await binanceController.getHistoricalMarketData(query);
+      const result = await binanceController.getHistoricalMarketData(query);
 
+      expect(result).toEqual(mockHistoricalMarketDataRes);
       expect(spyGetHistoricalMarketData).toHaveBeenCalledTimes(1);
       expect(spyGetHistoricalMarketData).toHaveBeenCalledWith(query);
     });
