@@ -2,7 +2,7 @@ import { HttpException, HttpStatus } from '@nestjs/common';
 import { AppErrorCode, errorMessages } from './types/app-error-message.enum';
 
 export class CustomHttpException extends HttpException {
-  errorCode: AppErrorCode;
+  private errorCode: AppErrorCode;
 
   constructor(
     errorCode: AppErrorCode,
