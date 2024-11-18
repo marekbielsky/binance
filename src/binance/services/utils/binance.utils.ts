@@ -1,16 +1,13 @@
-import {
-  BinanceSymbol,
-  HistoricalMarketDataParameters,
-} from '../types/binance.types';
-import { NOW, yesterday } from '../../../common/utils/date.util';
+import { BinanceSymbol } from '../types/binance.types';
+import { now, yesterday } from '../../../common/utils/date.util';
 import { BinanceExerciseHistoryDTO } from '../../dtos/binance.dto';
 
-export function getHistoricalDataParameters(
+export function getExerciseHistoryParameters(
   query: BinanceExerciseHistoryDTO,
-): HistoricalMarketDataParameters {
+): BinanceExerciseHistoryDTO {
   return {
     underlying: query.underlying ?? BinanceSymbol.BTCUSDT,
     startTime: query.startTime ?? yesterday(),
-    endTime: query.endTime ?? NOW,
+    endTime: query.endTime ?? now(),
   };
 }

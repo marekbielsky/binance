@@ -1,15 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { BinanceExerciseHistoryDTO } from '../dtos/binance.dto';
 import { BinanceApiRoutes } from '../../common/routes/routes.enum';
-import { getHistoricalDataParameters } from './utils/binance.utils';
+import { getExerciseHistoryParameters } from './utils/binance.utils';
+import { ExerciseHistoryBinanceApiResponse } from './types/binance.types';
 
 @Injectable()
 export class BinanceService {
-  public async getHistoricalMarketData(
+  public async getExerciseHistory(
     query: BinanceExerciseHistoryDTO,
-  ): Promise<any> {
+  ): Promise<ExerciseHistoryBinanceApiResponse[]> {
     const { underlying, startTime, endTime } =
-      getHistoricalDataParameters(query);
+      getExerciseHistoryParameters(query);
 
     const res = await fetch(
       `${BinanceApiRoutes.ExerciseHistory}?underlying=${underlying}&startTime=${startTime}&endTime=${endTime}`,
