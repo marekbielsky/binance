@@ -7,6 +7,8 @@
 
   const myChart = echarts.init(document.getElementById('main'));
 
+  console.log(data);
+
   const option = {
     title: {
       text: 'Binance API Historical Market Data Prices',

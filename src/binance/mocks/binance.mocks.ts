@@ -1,6 +1,6 @@
-import { ExerciseHistoryBinanceApiResponse } from '../services/types/binance.types';
+import { ExerciseHistoryDataRes } from '../responses/binance.response';
 
-const defaultExerciseHistoryResponse: ExerciseHistoryBinanceApiResponse = {
+const defaultExerciseHistoryResponse: ExerciseHistoryDataRes = {
   expiryDate: 1731916800000,
   strikePrice: '89500',
   realStrikePrice: '91718.32226717',
@@ -9,7 +9,7 @@ const defaultExerciseHistoryResponse: ExerciseHistoryBinanceApiResponse = {
 };
 
 export class BinanceMockFactory {
-  public static getMockApiResponse(): ExerciseHistoryBinanceApiResponse[] {
+  public static getMockApiResponse(): ExerciseHistoryDataRes[] {
     return [defaultExerciseHistoryResponse];
   }
 }

@@ -1,99 +1,108 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Binance Backend Service
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A backend service to interact with the Binance API such as including retrieving market data
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Table of Contents
 
-## Description
+- [Introduction](#introduction)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage(?)](#usage)
+- [Configuration](#configuration)
+- [API Documentation](#api-documentation)
+- [Testing](#testing)
+- [Contributing](#contributing)
+- [License](#license)
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Introduction
 
-## Project setup
+This project provides a NestJS-based backend service for interacting with Binance's trading API. It can fetch the 
+historical market data and display it in the chart
 
-```bash
-$ npm install
-```
+## Features
 
-## Compile and run the project
+- Fetch live market data from Binance.
+- Built using NestJS for easy scalability and maintainability.
+- Configurable API endpoint for fetching historical market data.
 
-```bash
-# development
-$ npm run start
+## Installation
 
-# watch mode
-$ npm run start:dev
+### Prerequisites
 
-# production mode
-$ npm run start:prod
-```
+- **Node.js** (LTS version) - [Download here](https://nodejs.org/)
+- **NestJS CLI** (optional but recommended) - [Install NestJS CLI](https://docs.nestjs.com/)
 
-## Run tests
+## Configuration
+
+Before running the application, you need to configure several environment variables to set up the necessary services, including the database and external APIs. Follow the steps below to get your environment ready.
+
+### 1. Clone the Repository
+
+First, clone the repository to your local machine:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+git clone https://github.com/marekbielsky/binance.git
+```
+```
+cd binance
 ```
 
-## Deployment
+### 2. Install dependencies
+```bash
+npm install
+```
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+### 3. Set Up Environment Variables
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+The project relies on several environment variables to configure different services (e.g., MongoDB, API keys, etc.). Create a .env file in the root directory of the project by following these steps:
+
+Copy the example .env file (if provided) or manually create a .env file in the root of the project.
+Add the necessary values for your environment variables.
+Here’s a sample .env file to help you get started:
+
+```
+API_PORT=3000
+```
+
+### 4. Run the application
+
+After setting up your environment, you can start the application. Run the following command:
 
 ```bash
-$ npm install -g mau
-$ mau deploy
+npm run start
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+This will launch the application on the specified port (by default, it will be port 3000 unless specified otherwise in the .env file).
 
-## Resources
+## API Documentation
 
-Check out a few resources that may come in handy when working with NestJS:
+This project uses **Swagger** to automatically generate API documentation. The documentation provides a detailed description of available endpoints, request parameters, response format, and more.
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+Once the application is running, you can access the API documentation via the Swagger UI at: http://localhost:3000/api/
 
-## Support
+## Testing
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+This project uses **Jest** as the testing framework, which is integrated with **NestJS**. The tests ensure the reliability of the application by verifying that the individual parts of the application work as expected.
 
-## Stay in touch
+### Types of Tests
+This project is structured to have different types of tests for various parts of the application:
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+1. **Unit Tests**:
+   Unit tests verify the behavior of individual components or services in isolation. These tests ensure that each part of the application works correctly and independently.
+
+## Contributing
+
+We welcome contributions to this project! By contributing, you help make this project better for everyone. There are several ways you can contribute, including reporting bugs, suggesting features, or improving the documentation.
 
 ## License
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+This project is licensed under the [MIT License](LICENSE).
+
+### MIT License Summary
+
+The MIT License is a permissive free software license that allows anyone to use, modify, and distribute the software with minimal restrictions. The only conditions are:
+
+- **Copyright Notice**: Include the copyright notice in all copies or substantial portions of the software.
+- **No Warranty**: The software is provided "as is", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose, and noninfringement.
+
+For the full text of the license, see the [LICENSE](LICENSE) file in this repository.
