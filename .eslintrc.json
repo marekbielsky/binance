@@ -1,0 +1,66 @@
+{
+  "root": true,
+  "ignorePatterns": ["**/*"],
+  "plugins": ["simple-import-sort"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {
+        "@nx/enforce-module-boundaries": [
+          "error",
+          {
+            "enforceBuildableLibDependency": true,
+            "allow": [],
+            "depConstraints": [
+              {
+                "sourceTag": "*",
+                "onlyDependOnLibsWithTags": [
+                  "*"
+                ]
+              }
+            ]
+          }
+        ],
+        "simple-import-sort/imports": [
+          2,
+          {
+            "groups": [[
+              "^\u0000", // all side effects
+              "\u0000$", "^\\..*\u0000$", // type imports
+              "^[^/.]", // non-local imports
+              "^\\./types.*", "^\\.\\./types.*", "^\\.\\./\\.\\./types.*", ".*.type$", // types
+              "^@config.*", //config
+              ".*.resolver$", // resolvers
+              ".*.controller$", // controllers
+              ".*.service$", // services
+              ".*.mapper$", // mappers
+              ".*.model$", //models
+              ".*.dto$", // dtos
+              "^@graphql.*", //graphql
+              "^@utils.*" ,"^\\./utils.*", "^\\.\\./utils.*", "^\\.\\./\\.\\./utils.*", // utils
+              "^\\./mock.*", "^\\.\\./mock.*", "^\\.\\./\\.\\./mock.*", // mocks
+              "^\\.\\.", "^\\." // local imports
+            ]]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "object-curly-spacing": ["warn", "always"]
+      }
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "rules": {}
+    },
+    {
+      "files": ["*.spec.ts", "*.spec.tsx", "*.spec.js", "*.spec.jsx"],
+      "env": {
+        "jest": true
+      },
+      "rules": {}
+    }
+  ]
+}
