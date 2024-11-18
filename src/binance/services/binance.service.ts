@@ -7,16 +7,14 @@ import { getHistoricalDataParameters } from './utils/binance.utils';
 export class BinanceService {
   public async getHistoricalMarketData(
     parameters?: HistoricalMarketDataParameters,
-  ): Promise<void> {
+  ): Promise<any> {
     const { underlying, startTime, endTime } =
       getHistoricalDataParameters(parameters);
 
     const res = await fetch(
-      `${BinanceApiRoutes.ExerciseHistory}?underlying=${underlying}&startTime=${startTime}&endTime=${endTime}`,
+      `${BinanceApiRoutes.ExerciseHistory}?underlying=${underlying}&limit=100`,
     );
 
-    const historicalMarketData = await res.json();
-
-    console.log(historicalMarketData);
+    return res.json();
   }
 }

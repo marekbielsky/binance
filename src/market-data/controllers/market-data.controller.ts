@@ -1,4 +1,4 @@
-import { Controller, Post } from '@nestjs/common';
+import { Controller, Get, Post } from '@nestjs/common';
 import { MarketDataService } from '../services/market-data.service';
 
 @Controller('/market-data')
@@ -8,5 +8,10 @@ export class MarketDataController {
   @Post('/')
   public async createMarketData(): Promise<void> {
     await this.marketDataService.createMarketData();
+  }
+
+  @Get('/')
+  public async getMarketData(): Promise<any> {
+    return this.marketDataService.getMarketData();
   }
 }

@@ -18,6 +18,9 @@ export class MarketData {
 
   @Prop({ isRequired: true })
   public strikeResult: string;
+
+  @Prop({ default: new Date() })
+  public createdAt: Date;
 }
 
 export const MarketDataSchema = SchemaFactory.createForClass(MarketData);
