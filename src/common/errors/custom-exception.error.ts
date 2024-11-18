@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { AppErrorCode } from './types/app-error-message.enum';
+import { AppErrorCode, errorMessages } from './types/app-error-message.enum';
 
 export class CustomHttpException extends HttpException {
   errorCode: AppErrorCode;
@@ -7,7 +7,7 @@ export class CustomHttpException extends HttpException {
   constructor(
     errorCode: AppErrorCode,
     statusCode: HttpStatus,
-    message?: string,
+    message: string = errorMessages[errorCode],
   ) {
     super(message, statusCode);
     this.errorCode = errorCode;
