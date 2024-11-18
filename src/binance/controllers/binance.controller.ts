@@ -1,7 +1,7 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import { BinanceService } from '../services/binance.service';
-import { BinanceExerciseHistoryDTO } from '../dtos/binance.dto';
-import { ExerciseHistoryDataRes } from '../responses/binance.response';
+import { HistoricalMarketDataDTO } from '../dtos/binance.dto';
+import { HistoricalMarketDataRes } from '../responses/binance.response';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 
 @Controller('/binance')
@@ -9,17 +9,17 @@ import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 export class BinanceController {
   constructor(private readonly binanceService: BinanceService) {}
 
-  @Get('/exercise-history')
+  @Get('/historical-market-data')
   @ApiOperation({
     summary: 'Fetches the historical market data of Binance API',
   })
   @ApiOkResponse({
     description: 'Fetches the historical market data of Binance API',
-    type: ExerciseHistoryDataRes,
+    type: HistoricalMarketDataRes,
   })
-  public async getExerciseHistory(
-    @Query() query: BinanceExerciseHistoryDTO,
-  ): Promise<ExerciseHistoryDataRes[]> {
-    return this.binanceService.getExerciseHistory(query);
+  public async getHistoricalMarketData(
+    @Query() query: HistoricalMarketDataDTO,
+  ): Promise<HistoricalMarketDataRes[]> {
+    return this.binanceService.getHistoricalMarketData(query);
   }
 }

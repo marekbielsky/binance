@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class ExerciseHistoryDataRes {
+export class HistoricalMarketDataRes {
   @ApiProperty({ example: 'BTC-241118-89500-C' })
   public readonly symbol: string;
 

@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { BinanceService } from '../binance.service';
 import { ConfigModule } from '@nestjs/config';
-import { BinanceExerciseHistoryDTO } from '../../dtos/binance.dto';
+import { HistoricalMarketDataDTO } from '../../dtos/binance.dto';
 import { BinanceSymbol } from '../types/binance.types';
 import { now, yesterday } from '../../../common/utils/date.util';
 import { BinanceMockFactory } from '../../mocks/binance.mocks';
@@ -19,25 +19,25 @@ describe('BinanceService', () => {
   });
 
   describe('getHistoricalMarketData', () => {
-    it('fetch the exercise history data of Binance API', async () => {
-      const query: BinanceExerciseHistoryDTO = {
+    it('should fetch the historical market data', async () => {
+      const query: HistoricalMarketDataDTO = {
         underlying: BinanceSymbol.BTCUSDT,
         startTime: yesterday(),
         endTime: now(),
       };
 
-      const mockExerciseHistoricalData =
-        BinanceMockFactory.getMockApiResponse();
+      const mockHistoricalMarketDataRes =
+        BinanceMockFactory.getMockHistoricalMarketDataRes();
 
       global.fetch = jest.fn(() =>
         Promise.resolve({
-          json: () => Promise.resolve(mockExerciseHistoricalData),
+          json: () => Promise.resolve(mockHistoricalMarketDataRes),
         }),
       ) as jest.Mock;
 
-      const result = await binanceService.getExerciseHistory(query);
+      const result = await binanceService.getHistoricalMarketData(query);
 
-      expect(result).toEqual(mockExerciseHistoricalData);
+      expect(result).toEqual(mockHistoricalMarketDataRes);
     });
   });
 });

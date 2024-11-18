@@ -11,7 +11,7 @@ import {
 import { BinanceSymbol } from '../services/types/binance.types';
 import { now, yesterday } from '../../common/utils/date.util';
 
-export class BinanceExerciseHistoryDTO {
+export class HistoricalMarketDataDTO {
   @IsString()
   @ApiProperty({
     example: BinanceSymbol.BTCUSDT,

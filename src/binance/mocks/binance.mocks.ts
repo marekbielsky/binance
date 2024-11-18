@@ -1,6 +1,6 @@
-import { ExerciseHistoryDataRes } from '../responses/binance.response';
+import { HistoricalMarketDataRes } from '../responses/binance.response';
 
-const defaultExerciseHistoryResponse: ExerciseHistoryDataRes = {
+const defaultHistoricalMarketDataRes: HistoricalMarketDataRes = {
   expiryDate: 1731916800000,
   strikePrice: '89500',
   realStrikePrice: '91718.32226717',
@@ -9,7 +9,7 @@ const defaultExerciseHistoryResponse: ExerciseHistoryDataRes = {
 };
 
 export class BinanceMockFactory {
-  public static getMockApiResponse(): ExerciseHistoryDataRes[] {
-    return [defaultExerciseHistoryResponse];
+  public static getMockHistoricalMarketDataRes(): HistoricalMarketDataRes[] {
+    return [defaultHistoricalMarketDataRes];
   }
 }
