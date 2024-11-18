@@ -7,7 +7,6 @@ A backend service to interact with the Binance API such as including retrieving 
 - [Introduction](#introduction)
 - [Features](#features)
 - [Installation](#installation)
-- [Usage(?)](#usage)
 - [Configuration](#configuration)
 - [API Documentation](#api-documentation)
 - [Testing](#testing)
