@@ -1,5 +1,7 @@
 (async () => {
-  const res = await fetch(`http://localhost:3000/binance/exercise-history`);
+  const res = await fetch(
+    `http://localhost:3000/binance/exercise-history?underlying=BTCUSDT`,
+  );
   const data = await res.json();
 
   const myChart = echarts.init(document.getElementById('main'));

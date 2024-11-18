@@ -3,15 +3,14 @@ import {
   HistoricalMarketDataParameters,
 } from '../types/binance.types';
 import { NOW, yesterday } from '../../../common/utils/date.util';
+import { BinanceExerciseHistoryDTO } from '../../dtos/binance.dto';
 
 export function getHistoricalDataParameters(
-  parameters?: HistoricalMarketDataParameters,
+  query: BinanceExerciseHistoryDTO,
 ): HistoricalMarketDataParameters {
-  return (
-    parameters ?? {
-      underlying: BinanceSymbol.BTCUSDT,
-      startTime: yesterday(),
-      endTime: NOW,
-    }
-  );
+  return {
+    underlying: query.underlying ?? BinanceSymbol.BTCUSDT,
+    startTime: query.startTime ?? yesterday(),
+    endTime: query.endTime ?? NOW,
+  };
 }

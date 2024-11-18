@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { HistoricalMarketDataParameters } from './types/binance.types';
-import { getHistoricalDataParameters } from './utils/binance.utils';
 import { BinanceExerciseHistoryDTO } from '../dtos/binance.dto';
+import { BinanceApiRoutes } from '../../common/routes/routes.enum';
+import { getHistoricalDataParameters } from './utils/binance.utils';
 
 @Injectable()
 export class BinanceService {
