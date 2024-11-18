@@ -16,8 +16,6 @@ export class BinanceService {
       `${BinanceApiRoutes.ExerciseHistory}?underlying=${underlying}&startTime=${startTime}&endTime=${endTime}`,
     );
 
-    const data = await res.json();
-
-    return data;
+    return res.json();
   }
 }
