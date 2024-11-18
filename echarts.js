@@ -1,6 +1,6 @@
 (async () => {
   const res = await fetch(
-    `http://localhost:3000/binance/exercise-history?underlying=BTCUSDT`,
+    `http://localhost:3000/binance/historical-market-data?underlying=BTCUSDT`,
   );
 
   const data = await res.json();
