@@ -23,7 +23,7 @@ export class HistoricalMarketDataDTO {
   @IsNumber()
   @IsPositive()
   @ApiPropertyOptional({
-    example: new Date().getTime(),
+    example: yesterday(),
     description: 'time in ms',
     default: yesterday(),
   })
@@ -33,7 +33,7 @@ export class HistoricalMarketDataDTO {
   @IsNumber()
   @IsPositive()
   @ApiPropertyOptional({
-    example: new Date().getTime(),
+    example: now(),
     description: 'time in ms',
     default: now(),
   })

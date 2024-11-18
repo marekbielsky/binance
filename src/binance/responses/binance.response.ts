@@ -10,9 +10,9 @@ export class HistoricalMarketDataRes {
   @ApiProperty({ example: '91718.32226717' })
   public readonly realStrikePrice: string;
 
-  @ApiProperty({ example: 'REALISTIC_VALUE_STRICKEN' })
+  @ApiProperty({ example: 1731916800000 })
   public readonly expiryDate: number;
 
-  @ApiProperty({ example: 1731916800000 })
+  @ApiProperty({ example: 'REALISTIC_VALUE_STRICKEN' })
   public readonly strikeResult: string;
 }
