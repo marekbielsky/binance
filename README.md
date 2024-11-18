@@ -31,7 +31,6 @@ historical market data and display it in the chart
 - **Node.js** (LTS version) - [Download here](https://nodejs.org/)
 - **NestJS CLI** (optional but recommended) - [Install NestJS CLI](https://docs.nestjs.com/)
 - **Live Preview** (optional but recommended) - [Install Live Preview](https://marketplace.visualstudio.com/items)
-  itemName=ms-vscode.live-server)
 
 ## Configuration
 
