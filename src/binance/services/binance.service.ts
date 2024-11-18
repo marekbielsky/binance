@@ -12,7 +12,7 @@ export class BinanceService {
     limit,
   }: HistoricalMarketDataDTO): Promise<HistoricalMarketDataRes[]> {
     const res = await fetch(
-      `${BinanceApiRoutes.ExerciseHistory}?underlying=${underlying}&startTime=${startTime}&endTime=${endTime}&limit=${limit}`,
+      `${process.env.BINANCE_API}/${BinanceApiRoutes.ExerciseHistory}?underlying=${underlying}&startTime=${startTime}&endTime=${endTime}&limit=${limit}`,
     );
 
     return res.json();
