@@ -12,7 +12,6 @@ describe('BinanceController', () => {
 
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
-      imports: [ConfigModule.forRoot()],
       controllers: [BinanceController],
       providers: [BinanceService],
     }).compile();
