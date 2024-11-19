@@ -9,6 +9,7 @@ import {
   AppErrorCode,
   errorMessages,
 } from '../../../common/errors/types/app-error-message.enum';
+import { CustomHttpException } from '../../../common/errors/custom-exception.error';
 
 describe('BinanceService', () => {
   let binanceService: BinanceService;
@@ -50,6 +51,7 @@ describe('BinanceService', () => {
       try {
         await binanceService.getHistoricalMarketData(query);
       } catch (e) {
+        expect(e).toBeInstanceOf(CustomHttpException);
         expect(e.errorCode).toBe(AppErrorCode.FailedDependency);
         expect(e.status).toBe(HttpStatus.FAILED_DEPENDENCY);
         expect(e.message).toBe(errorMessages[AppErrorCode.FailedDependency]);
