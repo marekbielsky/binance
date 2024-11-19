@@ -61,7 +61,7 @@ function getChartOptions(data) {
         left: 'center',
         top: '5%',
         style: {
-          text: `Overall percentage Change: ${data.percentageChange}%`,
+          text: `Overall percentage change: ${data.percentageChange}%`,
           fontSize: 14,
           fontWeight: 'bold',
         },
