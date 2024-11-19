@@ -55,6 +55,16 @@ export class BinanceService {
     const newestPrice = parseFloat(data[data.length - 1].strikePrice);
 
     const [min, max] = [oldestPrice, newestPrice].sort();
+
+    const isMinMaxBothZero = min === 0 && max === 0;
+    const isZeroMinWithNonZeroMax = min === 0 && max !== 0;
+
+    if (isMinMaxBothZero) {
+      return '0.00';
+    } else if (isZeroMinWithNonZeroMax) {
+      return '100.00';
+    }
+
     const percentageChange = ((max - min) / min) * 100;
 
     return percentageChange.toFixed(2);
