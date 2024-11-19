@@ -3,7 +3,10 @@ import { BinanceService } from '../binance.service';
 import { HistoricalMarketDataDTO } from '../../dtos/binance.dto';
 import { BinanceSymbol } from '../types/binance.types';
 import { now, yesterday } from '../../../common/utils/date.util';
-import { BinanceMockFactory } from '../../mocks/binance.mocks';
+import {
+  BinanceMockFactory,
+  defaultBinanceApiRes,
+} from '../../mocks/binance.mocks';
 import { HttpStatus } from '@nestjs/common';
 import {
   AppErrorCode,
@@ -36,7 +39,7 @@ describe('BinanceService', () => {
 
       global.fetch = jest.fn(() =>
         Promise.resolve({
-          json: () => Promise.resolve(mockHistoricalMarketDataRes),
+          json: () => Promise.resolve([defaultBinanceApiRes]),
         }),
       ) as jest.Mock;
 

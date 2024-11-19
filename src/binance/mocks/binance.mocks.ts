@@ -13,12 +13,17 @@ export const defaultBinanceApiRes: BinanceApiRes = {
 
 const defaultHistoricalMarketDataRes: HistoricalMarketDataRes = {
   historicalMarketData: [defaultBinanceApiRes],
-  percentageChange: '10.00%',
-  priceRange: { min: 0, max: 100 },
+  percentageChange: '0.00',
+  priceRange: { min: 89500, max: 89500 },
 };
 
 export class BinanceMockFactory {
-  public static getMockHistoricalMarketDataRes(): HistoricalMarketDataRes {
-    return defaultHistoricalMarketDataRes;
+  public static getMockHistoricalMarketDataRes(
+    customProperties: Partial<HistoricalMarketDataRes> = {},
+  ): HistoricalMarketDataRes {
+    return {
+      ...defaultHistoricalMarketDataRes,
+      ...customProperties,
+    };
   }
 }
