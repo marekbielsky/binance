@@ -19,7 +19,7 @@ export class BinanceController {
   })
   public async getHistoricalMarketData(
     @Query() query: HistoricalMarketDataDTO,
-  ): Promise<HistoricalMarketDataRes[]> {
+  ): Promise<HistoricalMarketDataRes> {
     return this.binanceService.getHistoricalMarketData(query);
   }
 }

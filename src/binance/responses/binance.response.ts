@@ -1,6 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { PriceRange } from '../services/types/binance.types';
+import { defaultBinanceApiRes } from '../mocks/binance.mocks';
 
-export class HistoricalMarketDataRes {
+export class BinanceApiRes {
   @ApiProperty({ example: 'BTC-241118-89500-C' })
   public readonly symbol: string;
 
@@ -15,4 +17,15 @@ export class HistoricalMarketDataRes {
 
   @ApiProperty({ example: 'REALISTIC_VALUE_STRICKEN' })
   public readonly strikeResult: string;
+}
+
+export class HistoricalMarketDataRes {
+  @ApiProperty({ example: [defaultBinanceApiRes] })
+  public readonly historicalMarketData: BinanceApiRes[];
+
+  @ApiProperty({ example: '10.00%' })
+  public readonly percentageChange: string;
+
+  @ApiProperty({ example: { min: 0, max: 100 } })
+  public readonly priceRange: PriceRange;
 }
