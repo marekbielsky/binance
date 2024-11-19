@@ -1,12 +1,13 @@
 const dom = document.getElementById('main');
 
 async function generateChart() {
-  const historicalMarketData = await fetchHistoricalMarketData();
+  const data = await fetchHistoricalMarketData();
+  console.log(data.historicalMarketData);
   const myChart = echarts.init(dom);
-  const options = getChartOptions(historicalMarketData);
+  const options = getChartOptions(data);
 
   myChart.setOption(options);
-  console.log(historicalMarketData);
+  console.log(data);
 }
 
 async function fetchHistoricalMarketData(underlying = 'BTCUSDT') {
@@ -27,23 +28,28 @@ function getChartOptions(data) {
       data: ['Price (USD)'],
     },
     xAxis: {
-      data: data.map((item) => item.symbol),
+      data: data.historicalMarketData.map((item) => item.symbol),
     },
     yAxis: {},
     series: [
       {
         name: 'Price (USD)',
         type: 'bar',
-        data: data.map((item) => Number(item.strikePrice)),
+        data: data.historicalMarketData.map((item) => Number(item.strikePrice)),
         markLine: {
           data: [
             { type: 'average', name: 'Average Price' },
             [
               {
-                coord: [0, data[0].strikePrice],
+                coord: [0, data.historicalMarketData[0].strikePrice],
               },
               {
-                coord: [data.length - 1, data[data.length - 1].strikePrice],
+                coord: [
+                  data.historicalMarketData.length - 1,
+                  data.historicalMarketData[
+                    data.historicalMarketData.length - 1
+                  ].strikePrice,
+                ],
               },
             ],
           ],
@@ -54,9 +60,29 @@ function getChartOptions(data) {
       {
         type: 'text',
         left: 'center',
-        top: '10%',
+        top: '5%',
         style: {
-          text: `Percentage Change: 10%`,
+          text: `Percentage Change: ${data.percentageChange}%`,
+          fontSize: 14,
+          fontWeight: 'bold',
+        },
+      },
+      {
+        type: 'text',
+        left: 'center',
+        top: '8%',
+        style: {
+          text: `Min price: ${data.priceRange.min}`,
+          fontSize: 14,
+          fontWeight: 'bold',
+        },
+      },
+      {
+        type: 'text',
+        left: 'center',
+        top: '11%',
+        style: {
+          text: `Max price: ${data.priceRange.max}`,
           fontSize: 14,
           fontWeight: 'bold',
         },
