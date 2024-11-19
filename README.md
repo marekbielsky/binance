@@ -18,7 +18,7 @@ A backend service to interact with the Binance API such as including retrieving 
 This project provides a NestJS-based backend service for interacting with Binance's trading API. It can fetch the 
 historical market data and display it in the chart
 
-![image](https://github.com/user-attachments/assets/eed1298e-042d-4dbb-a877-4e63490759d1)
+<img width="1470" alt="Screenshot 2024-11-19 at 03 06 29" src="https://github.com/user-attachments/assets/676455f6-b1a4-4778-bb30-ffae509e2bc3">
 
 ## Features
 
