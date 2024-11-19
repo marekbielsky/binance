@@ -15,7 +15,7 @@ export class CustomExceptionFilter implements ExceptionFilter {
 
     const errorResponse = {
       statusCode,
-      message: message || errorMessages[AppErrorCode.UnknownError],
+      message: message || errorMessages[errorCode],
       errorCode,
     };
 
