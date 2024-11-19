@@ -82,6 +82,24 @@ describe('BinanceService', () => {
       expect(result.percentageChange).toBe('0.00');
     });
 
+    it('should return the percentage change equal to 0.00 if the oldest and the newest price are the same', async () => {
+      const binanceHistoricalRecords = [
+        mockBinanceHistoricalRecord('100'),
+        mockBinanceHistoricalRecord('100'),
+        mockBinanceHistoricalRecord('100'),
+      ];
+
+      global.fetch = jest.fn(() =>
+        Promise.resolve({
+          json: () => Promise.resolve(binanceHistoricalRecords),
+        }),
+      ) as jest.Mock;
+
+      const result = await binanceService.getHistoricalMarketData(query);
+
+      expect(result.percentageChange).toBe('0.00');
+    });
+
     it('should return the percentage change between the oldest and the newest price', async () => {
       const binanceHistoricalRecords = [
         mockBinanceHistoricalRecord('100'),
