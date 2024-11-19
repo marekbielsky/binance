@@ -18,7 +18,7 @@ export class BinanceService {
         `${process.env.BINANCE_API}/${BinanceApiRoutes.ExerciseHistory}?underlying=${underlying}&startTime=${startTime}&endTime=${endTime}&limit=${limit}`,
       );
 
-      return res.json();
+      return res.json().then((data) => data.reverse());
     } catch (e) {
       throw new CustomHttpException(
         AppErrorCode.FailedDependency,
