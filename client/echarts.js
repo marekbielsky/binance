@@ -58,7 +58,7 @@ function getChartOptions(data) {
     graphic: [
       {
         type: 'text',
-        left: 'center',
+        left: 'right',
         top: '5%',
         style: {
           text: `Overall percentage change: ${data.percentageChange}%`,
@@ -68,7 +68,7 @@ function getChartOptions(data) {
       },
       {
         type: 'text',
-        left: 'center',
+        left: 'right',
         top: '8%',
         style: {
           text: `Min price: ${data.priceRange.min}`,
@@ -78,7 +78,7 @@ function getChartOptions(data) {
       },
       {
         type: 'text',
-        left: 'center',
+        left: 'right',
         top: '11%',
         style: {
           text: `Max price: ${data.priceRange.max}`,
