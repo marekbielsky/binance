@@ -2,7 +2,6 @@ const dom = document.getElementById('main');
 
 async function generateChart() {
   const data = await fetchHistoricalMarketData();
-  console.log(data.historicalMarketData);
   const myChart = echarts.init(dom);
   const options = getChartOptions(data);
 
@@ -62,7 +61,7 @@ function getChartOptions(data) {
         left: 'center',
         top: '5%',
         style: {
-          text: `Percentage Change: ${data.percentageChange}%`,
+          text: `Overall percentage Change: ${data.percentageChange}%`,
           fontSize: 14,
           fontWeight: 'bold',
         },
