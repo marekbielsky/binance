@@ -22,10 +22,11 @@ async function bootstrap() {
   );
 
   const config = new DocumentBuilder()
-    .setTitle('CLOUDFIDE')
-    .setDescription('CLOUDFIDE API')
+    .setTitle('Binance API')
+    .setDescription(
+      'The API allows to fetch historical market data of Binance API',
+    )
     .setVersion('1.0')
-    .addTag('CLOUDFIDE')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
