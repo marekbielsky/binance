@@ -1,12 +1,12 @@
 import {
-  BinanceApiRes,
+  BinanceHistoricalRecordRes,
   HistoricalMarketDataRes,
 } from '../responses/binance.response';
 import { AnalyzedMarketChanges } from '../services/types/binance.types';
 
 export class BinanceMapper {
   public static toHistoricalMarketDataRes(
-    data: BinanceApiRes[],
+    data: BinanceHistoricalRecordRes[],
     analyzedMarketChanges: AnalyzedMarketChanges,
   ): HistoricalMarketDataRes {
     return {

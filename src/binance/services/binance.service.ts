@@ -2,7 +2,7 @@ import { HttpStatus, Injectable } from '@nestjs/common';
 import { HistoricalMarketDataDTO } from '../dtos/binance.dto';
 import { BinanceApiRoutes } from '../../common/routes/routes.enum';
 import {
-  BinanceApiRes,
+  BinanceHistoricalRecordRes,
   HistoricalMarketDataRes,
 } from '../responses/binance.response';
 import { CustomHttpException } from '../../common/errors/custom-exception.error';
@@ -35,25 +35,32 @@ export class BinanceService {
     }
   }
 
-  private analyzeMarketChanges(data: BinanceApiRes[]): AnalyzedMarketChanges {
+  private analyzeMarketChanges(
+    data: BinanceHistoricalRecordRes[],
+  ): AnalyzedMarketChanges {
     const percentageChange = this.calculatePercentageChange(data);
     const priceRange = this.findPriceRange(data);
 
     return { percentageChange, priceRange };
   }
 
-  private calculatePercentageChange(data: BinanceApiRes[]): string {
+  private calculatePercentageChange(
+    data: BinanceHistoricalRecordRes[],
+  ): string {
     if (data.length < 2) {
       return '0.00';
     }
 
-    const firstPrice = parseFloat(data[0].strikePrice);
-    const lastPrice = parseFloat(data[data.length - 1].strikePrice);
+    const oldestPrice = parseFloat(data[0].strikePrice);
+    const newestPrice = parseFloat(data[data.length - 1].strikePrice);
 
-    return Math.abs(((lastPrice - firstPrice) / firstPrice) * 100).toFixed(2);
+    const [min, max] = [oldestPrice, newestPrice].sort();
+    const percentageChange = ((max - min) / min) * 100;
+
+    return percentageChange.toFixed(2);
   }
 
-  private findPriceRange(data: BinanceApiRes[]): PriceRange {
+  private findPriceRange(data: BinanceHistoricalRecordRes[]): PriceRange {
     const prices = data.map((item) => parseFloat(item.strikePrice));
 
     const min = Math.min(...prices);

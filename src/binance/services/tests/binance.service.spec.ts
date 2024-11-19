@@ -13,16 +13,29 @@ import {
   errorMessages,
 } from '../../../common/errors/types/app-error-message.enum';
 import { CustomHttpException } from '../../../common/errors/custom-exception.error';
+import { BinanceHistoricalRecordRes } from '../../responses/binance.response';
 
 describe('BinanceService', () => {
   let binanceService: BinanceService;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     const app: TestingModule = await Test.createTestingModule({
       providers: [BinanceService],
     }).compile();
 
     binanceService = app.get<BinanceService>(BinanceService);
+  });
+
+  beforeEach(() => {
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        json: () => Promise.resolve([defaultBinanceApiRes]),
+      }),
+    ) as jest.Mock;
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 
   describe('getHistoricalMarketData', () => {
@@ -33,20 +46,13 @@ describe('BinanceService', () => {
       limit: 50,
     };
 
-    it('should fetch the historical market data', async () => {
-      const mockHistoricalMarketDataRes =
-        BinanceMockFactory.getMockHistoricalMarketDataRes();
-
-      global.fetch = jest.fn(() =>
-        Promise.resolve({
-          json: () => Promise.resolve([defaultBinanceApiRes]),
-        }),
-      ) as jest.Mock;
-
-      const result = await binanceService.getHistoricalMarketData(query);
-
-      expect(result).toEqual(mockHistoricalMarketDataRes);
-    });
+    function mockBinanceHistoricalRecord(
+      strikePrice: string,
+    ): BinanceHistoricalRecordRes {
+      return BinanceMockFactory.getMockBinanceHistoricalRecord({
+        strikePrice,
+      });
+    }
 
     it('should throw a failed dependency exception if Binance API request fails', async () => {
       global.fetch = jest.fn(() => Promise.reject({})) as jest.Mock;
@@ -59,6 +65,39 @@ describe('BinanceService', () => {
         expect(e.status).toBe(HttpStatus.FAILED_DEPENDENCY);
         expect(e.message).toBe(errorMessages[AppErrorCode.FailedDependency]);
       }
+    });
+
+    it('should fetch the historical market data', async () => {
+      const mockHistoricalMarketDataRes =
+        BinanceMockFactory.getMockHistoricalMarketDataRes();
+
+      const result = await binanceService.getHistoricalMarketData(query);
+
+      expect(result).toEqual(mockHistoricalMarketDataRes);
+    });
+
+    it('should return the percentage change equal to 0.00 if only one record received', async () => {
+      const result = await binanceService.getHistoricalMarketData(query);
+
+      expect(result.percentageChange).toBe('0.00');
+    });
+
+    it('should return the percentage change between the oldest and the newest price', async () => {
+      const binanceHistoricalRecords = [
+        mockBinanceHistoricalRecord('100'),
+        mockBinanceHistoricalRecord('200'),
+        mockBinanceHistoricalRecord('150'),
+      ];
+
+      global.fetch = jest.fn(() =>
+        Promise.resolve({
+          json: () => Promise.resolve(binanceHistoricalRecords),
+        }),
+      ) as jest.Mock;
+
+      const result = await binanceService.getHistoricalMarketData(query);
+
+      expect(result.percentageChange).toBe('50.00');
     });
   });
 });

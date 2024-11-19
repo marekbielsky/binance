@@ -1,9 +1,9 @@
 import {
-  BinanceApiRes,
+  BinanceHistoricalRecordRes,
   HistoricalMarketDataRes,
 } from '../responses/binance.response';
 
-export const defaultBinanceApiRes: BinanceApiRes = {
+export const defaultBinanceApiRes: BinanceHistoricalRecordRes = {
   expiryDate: 1731916800000,
   strikePrice: '89500',
   realStrikePrice: '91718.32226717',
@@ -18,6 +18,15 @@ const defaultHistoricalMarketDataRes: HistoricalMarketDataRes = {
 };
 
 export class BinanceMockFactory {
+  public static getMockBinanceHistoricalRecord(
+    customProperties: Partial<BinanceHistoricalRecordRes> = {},
+  ): BinanceHistoricalRecordRes {
+    return {
+      ...defaultBinanceApiRes,
+      ...customProperties,
+    };
+  }
+
   public static getMockHistoricalMarketDataRes(
     customProperties: Partial<HistoricalMarketDataRes> = {},
   ): HistoricalMarketDataRes {
