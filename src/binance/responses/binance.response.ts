@@ -23,7 +23,7 @@ export class HistoricalMarketDataRes {
   @ApiProperty({ example: [defaultBinanceApiRes] })
   public readonly historicalMarketData: BinanceHistoricalRecordRes[];
 
-  @ApiProperty({ example: '10.00%' })
+  @ApiProperty({ example: '100.00%' })
   public readonly percentageChange: string;
 
   @ApiProperty({ example: { min: 0, max: 100 } })
