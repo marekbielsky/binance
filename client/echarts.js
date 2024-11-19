@@ -35,6 +35,31 @@ function getChartOptions(data) {
         name: 'Price (USD)',
         type: 'bar',
         data: data.map((item) => Number(item.strikePrice)),
+        markLine: {
+          data: [
+            { type: 'average', name: 'Average Price' },
+            [
+              {
+                coord: [0, data[0].strikePrice],
+              },
+              {
+                coord: [data.length - 1, data[data.length - 1].strikePrice],
+              },
+            ],
+          ],
+        },
+      },
+    ],
+    graphic: [
+      {
+        type: 'text',
+        left: 'center',
+        top: '10%',
+        style: {
+          text: `Percentage Change: 10%`,
+          fontSize: 14,
+          fontWeight: 'bold',
+        },
       },
     ],
   };
