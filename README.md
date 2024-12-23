@@ -2,8 +2,7 @@
 
 A NestJS-based backend service for interacting with Binance's trading API.
 
-<img width="1470" alt="Screenshot 2024-11-19 at 03 06 29" src="https://github.
-com/user-attachments/assets/676455f6-b1a4-4778-bb30-ffae509e2bc3">
+<img width="1468" alt="Screenshot 2024-12-23 at 23 50 38" src="https://github.com/user-attachments/assets/fc0b5634-b8a4-4b95-b68a-0a7f2ecf29ef" />
 
 ## Table of Contents
 
